@@ -42,13 +42,13 @@ resource "aws_instance" "app" {
     sudo apt-get install nginx -y
     sudo chown :ubuntu /var/www/html
     sudo chmod g+w /var/www/html
-    echo "Hello foo" > /var/www/html/index.html
+    echo "Hello ${var.app_name}" > /var/www/html/index.html
   EOF
 
   user_data_replace_on_change = true
 
   tags = {
-    Name = "foo server"
+    Name = "${var.app_name} server"
   }
 }
 
